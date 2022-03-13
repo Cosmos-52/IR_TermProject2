@@ -64,6 +64,6 @@ def query_by_ingredients(input):
 
 
 if __name__ == '__main__':
-    # login.app.run(host=os.getenv('IP', '0.0.0.0'), port=int(os.getenv('PORT', 3569)))
+    login.app.run(host=os.getenv('IP', '0.0.0.0'), port=int(os.getenv('PORT', 3569)))
     check_spell('mushro', 'title')
     check_spell('sugar', 'ingredients')
