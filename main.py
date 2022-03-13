@@ -22,6 +22,7 @@ def clean(data):
 
 
 def check_spell(query, query_type):
+    query = 2
     check = TextBlob(query).correct()
     correct = str(check)
     print(correct)
@@ -51,8 +52,9 @@ def query_by_title(input):
     query = tfidfvectorizer.transform([clean(input)])
     result = cosine_similarity(title_invert, query).reshape((-1,))
     for i, index in enumerate(result.argsort()[-10:][::-1]):
+        end_result = dataset['Title'][index]
         print(str(i + 1), dataset['Title'][index], "--", result[index], dataset['Image_Name'][index])
-
+    return end_result
 
 def query_by_ingredients(input):
     tfidfvectorizer = TfidfVectorizer(ngram_range=(1, 2))
@@ -64,6 +66,6 @@ def query_by_ingredients(input):
 
 
 if __name__ == '__main__':
-    login.app.run(host=os.getenv('IP', '0.0.0.0'), port=int(os.getenv('PORT', 3569)))
+    # login.app.run(host=os.getenv('IP', '0.0.0.0'), port=int(os.getenv('PORT', 3569)))
     check_spell('mushro', 'title')
     check_spell('sugar', 'ingredients')
